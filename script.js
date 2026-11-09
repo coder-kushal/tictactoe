@@ -2,6 +2,7 @@ const winMsg = document.querySelector("#winMsg");
 const resultPopup = document.querySelector(".resultPopup");
 const turn = document.querySelector("#turn");
 const squares = document.querySelectorAll(".playSquare"); // returns a collection of element nodes, behave like an array but not a true array 
+const botLevelEl = document.querySelector("#botLevel");
 
 const initialBoard = ['', '', '', '', '', '', '', '', ''];
 
@@ -199,7 +200,7 @@ function bestMove() {
 
 function playComp() {
     if (compTurn && !getWinner(board)) {
-        let move = bestMove();
+        let move = botLevelEl.checked ? bestMove() : simpleBot();
         board[move] = "O"
         document.querySelector(`#box${move}`).textContent = "O";
         if (getWinner(board)) {
